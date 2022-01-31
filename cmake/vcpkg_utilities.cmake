@@ -27,7 +27,7 @@ function (get_vcpkg)
             )
         endif()
         set(VCPKG_DIR "${vcpkg_SOURCE_DIR}" PARENT_SCOPE)
-        set(VCPKG_CMD "${vcpkg_SOURCE_DIR}/${VCPKG_BINARY}" PARENT_SCOPE)
+        set(VCPKG_CMD "${vcpkg_SOURCE_DIR}/$<CONFIG>/${VCPKG_BINARY}" PARENT_SCOPE)
         set(VCPKG_DEPENDENCIES "vcpkg" PARENT_SCOPE)
     else()
         # use an external/existing vcpkg instance
