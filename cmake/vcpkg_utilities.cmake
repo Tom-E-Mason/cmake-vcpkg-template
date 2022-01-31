@@ -34,8 +34,7 @@ function (get_vcpkg)
             string(APPEND VCPKG_BIN_DIR $<CONFIG>)
         endif()
         
-        set(VCPKG_CMD "${VCPKG_DIR}/${VCPKG_BINARY}" PARENT_SCOPE)
-        set(VCPKG_CMD "${vcpkg_SOURCE_DIR}/${VCPKG_BINARY}" PARENT_SCOPE)
+        set(VCPKG_CMD "${VCPKG_BIN_DIR}/${VCPKG_BINARY}" PARENT_SCOPE)
         set(VCPKG_DEPENDENCIES "vcpkg" PARENT_SCOPE)
     else()
         # use an external/existing vcpkg instance
