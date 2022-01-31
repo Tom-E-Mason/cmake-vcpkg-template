@@ -26,8 +26,16 @@ function (get_vcpkg)
                 ${vcpkg_SOURCE_DIR}
             )
         endif()
+        
         set(VCPKG_DIR "${vcpkg_SOURCE_DIR}" PARENT_SCOPE)
-        set(VCPKG_CMD "${vcpkg_SOURCE_DIR}/${VCPKG_BINARY}" PARENT_SCOPE)
+        set(VCPKG_BIN_DIR ${vcpkg_SOURCE_DIR})
+
+        get_property(IS_MULTI_CONFIG GLOBAL PROPERTY GENERATOR_IS_MULTI_CONFIG)
+        if(IS_MULTI_CONFIG)
+            string(APPEND VCPKG_BIN_DIR "/$<CONFIG>")
+        endif()
+        
+        set(VCPKG_CMD "${VCPKG_BIN_DIR}/${VCPKG_BINARY}" PARENT_SCOPE)
         set(VCPKG_DEPENDENCIES "vcpkg" PARENT_SCOPE)
     else()
         # use an external/existing vcpkg instance
