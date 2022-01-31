@@ -31,7 +31,7 @@ function (get_vcpkg)
         set(VCPKG_BIN_DIR ${VCPKG_DIR})
         
         if(${GENERATOR_IS_MULTI_CONFIG})
-            string(APPEND VCPKG_BIN_DIR $<CONFIG>)
+            string(APPEND VCPKG_BIN_DIR "/$<CONFIG>")
         endif()
         
         set(VCPKG_CMD "${VCPKG_BIN_DIR}/${VCPKG_BINARY}" PARENT_SCOPE)
