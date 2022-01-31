@@ -28,9 +28,10 @@ function (get_vcpkg)
         endif()
         
         set(VCPKG_DIR "${vcpkg_SOURCE_DIR}" PARENT_SCOPE)
-        set(VCPKG_BIN_DIR ${VCPKG_DIR})
-        
-        if(${GENERATOR_IS_MULTI_CONFIG})
+        set(VCPKG_BIN_DIR ${vcpkg_SOURCE_DIR})
+
+        get_property(IS_MULTI_CONFIG GLOBAL PROPERTY GENERATOR_IS_MULTI_CONFIG)
+        if(IS_MULTI_CONFIG)
             string(APPEND VCPKG_BIN_DIR "/$<CONFIG>")
         endif()
         
