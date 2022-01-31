@@ -16,8 +16,8 @@ on:
 jobs:
   # This workflow contains a single job called "build"
   build:
-    name: ${{ matrix.config.name }}
-    runs-on: ${{ matrix.config.os }}
+    name: ${{ matrix.os }} ${{ matrix.build-system }}
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [windows-latest, ubuntu-latest]
@@ -68,7 +68,7 @@ jobs:
         cmake --build .
 
     - name: CMake build (Windows)
-      if: matrix.config.os == 'windows-latest' && matrix.build-system == 'visual-studio'
+      if: matrix.os == 'windows-latest' && matrix.build-system == 'visual-studio'
       shell: cmd
       run: |
         cd build
@@ -76,7 +76,7 @@ jobs:
         cmake --build .
         
     - name: CMake build (Windows Ninja)
-      if: matrix.config.os == 'windows-latest' && matrix.build-system == 'ninja'
+      if: matrix.os == 'windows-latest' && matrix.build-system == 'ninja'
       shell: cmd
       run: |
         cd build
